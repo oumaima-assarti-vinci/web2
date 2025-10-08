@@ -1,0 +1,91 @@
+######### NORMAL OPERATION  ###########
+
+### Read all texts
+GET http://localhost:3000/texts
+
+### Read all texts with File variable
+@baseUrl = http://localhost:3000
+GET {{baseUrl}}/texts
+
+### Read all texts sorted by level (ascending)
+GET {{baseUrl}}/texts/?order=+level
+
+### Read all texts sorted by level (descending)
+GET {{baseUrl}}/texts/?order=-level
+
+### Read text identified by 2
+GET {{baseUrl}}/texts/16
+
+### Create a text
+POST {{baseUrl}}/texts
+Content-Type: application/json
+
+{
+    "level":2,
+    "content":"Taken 2"
+}
+
+### Delete text identified by 2
+DELETE {{baseUrl}}/texts/16
+
+### Update the text identified by 6
+PATCH {{baseUrl}}/texts/13
+Content-Type: application/json
+
+{
+    "level":2,
+    "content":"Taken 2"
+}
+
+
+
+
+######### ERROR OPERATION  ###########
+
+### Read text which does not exists
+GET {{baseUrl}}/texts/100
+
+### Create a text which lacks a property
+POST {{baseUrl}}/texts
+Content-Type: application/json
+
+{
+    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+}
+
+### Create a text without info for a property
+POST {{baseUrl}}/texts
+Content-Type: application/json
+
+{
+    "level":12,
+    "content":" "
+}
+
+### Update for a movie which does not exist
+PATCH {{baseUrl}}/texts/6
+Content-Type: application/json
+
+{
+    "title":"Magic Green 2"
+}
+
+### Update for a text which does not provide any info for a property
+PATCH {{baseUrl}}/texts/3
+Content-Type: application/json
+
+{
+    "level": 3,
+    "content":"Magic Green 3"
+}
+### Delete a TEXT
+DELETE {{baseUrl}}/texts/8
+
+### Patch a text
+PATCH {{baseUrl}}/texts/8
+Content-Type: application/json
+
+{
+    "level": 12,
+    "content":"Bob l'éponge 2"
+}
